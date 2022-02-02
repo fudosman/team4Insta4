@@ -2,15 +2,15 @@ const express = require('express');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
-require('dotenv').config()
+require('dotenv').config();
 
 const app = express();
 
 // ROUTES
-const userRoutes = require('./routes/userRoutes')
+const userRoutes = require('./routes/userRoutes');
 
 // DB Connection
-mongoose.connect(proocess.env.DB_LOCAL, 
+mongoose.connect(process.env.DB_CONNECT_LOCAL, 
     { useNewUrlParser: true,
     useUnifiedTopology: true})
     .then(
@@ -18,7 +18,7 @@ mongoose.connect(proocess.env.DB_LOCAL,
             console.log(">>> Database Connection Successful!")
         }).catch( (error) => {
             console.log("<<< Unable To Connet To Database");
-            console.log(error)
+            console.log(error);
         })
 
 
@@ -41,6 +41,19 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
+<<<<<<< HEAD
 app.use('/user', userRoutes)
 
 module.exports = app;
+||||||| 03e07d9
+app.use('/user', userRoutes)
+=======
+app.use('/user', userRoutes);
+
+// not found route
+app.use("**", (req, res) => {
+    res.status(404).send({ message: "Route not found" });
+});
+
+module.exports = app;
+>>>>>>> c61be0a4cede3a6828a88202fbef135edd2aac8b

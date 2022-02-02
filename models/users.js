@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
 
 const userSchema = mongoose.Schema(
   {
@@ -54,7 +55,7 @@ const userSchema = mongoose.Schema(
 
 
 //INSTANCE METHODS
-userSchema.methods.setPassword = (pwd) => {
+userSchema.methods.setPassword = async (pwd) => {
   this.password.salt = await bcrypt.genSalt(10);
   this.password.hash = await bcrypt.hash(pwd, this.password.salt);
 };
