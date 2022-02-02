@@ -4,13 +4,7 @@ const upload = require('../utils/multer');
 
 
 // sign up 
-<<<<<<< HEAD
 exports.uploadProfileImage = upload.single('image', 3);
-||||||| 03e07d9
-exports.uploadProfileImage = upload('image', 3);
-=======
-exports.uploadProfileImage = upload.array('image', 3);
->>>>>>> c61be0a4cede3a6828a88202fbef135edd2aac8b
 
 exports.signup = async (req, res, next) => {
     try {
@@ -19,14 +13,15 @@ exports.signup = async (req, res, next) => {
         if (userExists) return res.status(400).send({message: "Email Already In Use!"});
 
         // save profile url
-        const { files } = req;
+        const { file } = req;
         const imgUrl = "";
 
         try {
-            for (file of files) {
-              console.log(file);
-              imgUrl = file.location;
-            }
+            // // for (file of files) {
+            // //   console.log(file);
+            //   imgUrl = files.location;
+            // }
+            imgUrl = file.location
         } catch(error){
             res.status(500).send({message: "Error Uploading Images"})
         }

@@ -41,13 +41,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-<<<<<<< HEAD
-app.use('/user', userRoutes)
-
-module.exports = app;
-||||||| 03e07d9
-app.use('/user', userRoutes)
-=======
 app.use('/user', userRoutes);
 
 // not found route
@@ -56,4 +49,3 @@ app.use("**", (req, res) => {
 });
 
 module.exports = app;
->>>>>>> c61be0a4cede3a6828a88202fbef135edd2aac8b
