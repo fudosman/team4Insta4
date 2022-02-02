@@ -3,7 +3,7 @@ const upload = require('../utils/multer');
 
 
 // sign up 
-exports.uploadProfileImage = upload('image', 3);
+exports.uploadProfileImage = upload.single('image', 3);
 
 exports.signup = async( (req, res, next) => {
     try {

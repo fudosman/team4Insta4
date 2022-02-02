@@ -5,3 +5,6 @@ router
     .route('/signup')
     .post( authController.uploadProfileImage,
            authController.signup )
+
+
+module.exports = router;

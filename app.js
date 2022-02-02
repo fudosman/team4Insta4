@@ -27,6 +27,13 @@ app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// implement express session
+app.use(session({
+    secret: process.env.SECRET,
+    resave: true,
+    saveUninitialized: true
+}));
+
 
 // middleware for passport
 require('./config/passport')(passport);
@@ -35,3 +42,5 @@ app.use(passport.session());
 
 
 app.use('/user', userRoutes)
+
+module.exports = app;
