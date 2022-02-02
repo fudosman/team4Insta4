@@ -28,6 +28,11 @@ const userSchema = mongoose.Schema(
       validate: [validator.isEmail, 'Please Provide a valid email'],
     },
 
+    phone: {
+      type: String,
+      required: true
+    },
+
     password: {
       hash: {
         type: String,
@@ -54,4 +59,4 @@ userSchema.methods.setPassword = (pwd) => {
   this.password.hash = await bcrypt.hash(pwd, this.password.salt);
 };
 
-module.exports = mongoose.model("users", userSchema);
+module.exports = mongoose.model("User", userSchema);
