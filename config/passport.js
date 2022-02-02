@@ -1,10 +1,10 @@
 //// dependecies
 const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 // Load user model
-const User = require('../models/User');
+const User = require('../models/users');
 
 module.exports = (passport) => {
     passport.use(
