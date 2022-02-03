@@ -4,6 +4,6 @@ module.exports = {
             return next();
         }
         req.flash('errorMsg', 'Please Login or Register if you do not have account yet!')
-        res.redirect('/users/login');
+        res.redirect('/user/login');
     }
 }

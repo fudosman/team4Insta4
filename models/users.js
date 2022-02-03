@@ -52,7 +52,4 @@ const userSchema = mongoose.Schema(
 );
 
 
-//INSTANCE METHODS
-
-
 module.exports = mongoose.model("User", userSchema);
