@@ -2,12 +2,15 @@ const express = require('express');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
+const session = require('express-session');
 require('dotenv').config();
 
 const app = express();
 
 // ROUTES
-const userRoutes = require('./routes/userRoutes');
+const userRoutes = require('./routes/userRoute');
+const postRoutes = require('./routes/postRoute');
+const authRoutes = require('./routes/authRoute');
 
 // DB Connection
 mongoose.connect(process.env.DB_CONNECT_LOCAL, 
@@ -42,6 +45,8 @@ app.use(passport.session());
 
 
 app.use('/user', userRoutes);
+app.use('/post', postRoutes);
+app.use('/auth', authRoutes);
 
 // not found route
 app.use("**", (req, res) => {

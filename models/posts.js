@@ -15,9 +15,11 @@ const postSchema = mongoose.Schema(
     },
     likes: {
       // list of ids of people that liked the post
+
     },
     comments: {
       // list of ids of people that commented on the post
+      
     }
   },
   {

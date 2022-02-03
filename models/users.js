@@ -41,8 +41,14 @@ const userSchema = mongoose.Schema(
       },
       salt: String
     },
-
-    feed: []
+    feed: [],
+    followers: [
+      {type: mongoose.Types.ObjectId, ref: 'User'},
+    ],
+    following: [
+      {type: mongoose.Types.ObjectId, ref: 'User'},
+      
+    ],
   },
 
   {
