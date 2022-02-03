@@ -3,10 +3,6 @@ const validator = require("validator");
 
 const userSchema = mongoose.Schema(
   {
-    username: {
-      type: String
-    },
-
     firstname: {
       type: String,
       required: true,
@@ -17,7 +13,7 @@ const userSchema = mongoose.Schema(
       required: true,
     },
 
-    profilePicture: {
+    image: {
       type: String
     },
 
@@ -35,12 +31,14 @@ const userSchema = mongoose.Schema(
     },
 
     password: {
-      hash: {
-        type: String,
-        required: true
-      },
-      salt: String
+      type : String,
+      required: true
     },
+
+    username: {
+      type: String
+    },
+
 
     feed: []
   },
@@ -55,9 +53,6 @@ const userSchema = mongoose.Schema(
 
 
 //INSTANCE METHODS
-userSchema.methods.setPassword = async (pwd) => {
-  this.password.salt = await bcrypt.genSalt(10);
-  this.password.hash = await bcrypt.hash(pwd, this.password.salt);
-};
+
 
 module.exports = mongoose.model("User", userSchema);

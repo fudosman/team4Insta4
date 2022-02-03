@@ -1,13 +1,14 @@
 const express = require('express');
 const passport = require('passport');
 const mongoose = require('mongoose');
+const session = require('express-session');
 const morgan = require('morgan');
 require('dotenv').config();
 
 const app = express();
 
 // ROUTES
-const userRoutes = require('./routes/userRoutes');
+const userRoutes = require('./routes/authRoutes');
 
 // DB Connection
 mongoose.connect(process.env.DB_CONNECT_LOCAL, 
