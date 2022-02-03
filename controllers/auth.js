@@ -1,8 +1,7 @@
 const User = require('../models/users');
 const upload = require('../utils/multer');
-const bcrypt = require('bcrypt');
-
-
+const bcrypt = require('bcryptjs');
+const passport = require('passport');
 
 // sign up 
 exports.uploadProfileImage = upload.single('image');
@@ -32,3 +31,15 @@ exports.signup = async (req, res, next) => {
         res.status(500).send({ error, message: "Could Not Create User! "})
     }
 } 
+
+// signin 
+exports.signin = async (req, res, next) => {
+    try {
+        passport.authenticate('local', {
+            successRedirect: '/feed',
+            failureRedirect: '/user/login'
+    })(req, res, next);
+    } catch(error){
+        res.status(500).send({error, message: "Login Error!"})
+    }
+}
