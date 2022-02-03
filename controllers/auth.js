@@ -9,7 +9,7 @@ exports.uploadProfileImage = upload.single('image');
 
 exports.signup = async (req, res, next) => {
     try {
-        const { firstname, lastname, email, password, phone } = req.body;
+        const { name, email, password, phone } = req.body;
         const userExists = await User.exists({ email });
         if (userExists) return res.status(400).send({message: "Email Already In Use!"});
 
@@ -24,7 +24,7 @@ exports.signup = async (req, res, next) => {
         const salt = await bcrypt.genSalt(10);
         pwd = await bcrypt.hash(password, salt);
 
-        newUser.set({ firstname, lastname, email, phone, image: imgUrl, password: pwd });
+        newUser.set({ name, email, phone, image: imgUrl, password: pwd, username: email.split('@')[0] });
         const following = [newUser._id];
         newUser.set({following: following});
         
