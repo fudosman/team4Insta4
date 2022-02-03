@@ -39,8 +39,8 @@ const userSchema = mongoose.Schema(
       type: String
     },
 
-
-    feed: []
+    following: [],
+    followers: []
   },
 
   {

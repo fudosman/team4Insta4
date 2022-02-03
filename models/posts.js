@@ -2,10 +2,12 @@ const mongoose = require("mongoose");
 
 const postSchema = mongoose.Schema(
   {
-    uploadersId: {
+    uploader: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User'
       // get the id of the creator of this post
     },
-    img: {
+    image: {
       // get the image
       type: String,
       required: true,
@@ -13,12 +15,10 @@ const postSchema = mongoose.Schema(
     description: {
       type: String,
     },
-    likes: {
-      // list of ids of people that liked the post
-    },
-    comments: {
-      // list of ids of people that commented on the post
-    }
+    likes: [],
+    // list of ids of people that liked the post
+    comments: [],
+    // list of ids of people that commented on the post
   },
   {
     timestamps: {
@@ -28,4 +28,4 @@ const postSchema = mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("posts", postSchema);
+module.exports = mongoose.model("Post", postSchema);

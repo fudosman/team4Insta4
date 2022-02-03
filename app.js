@@ -1,5 +1,4 @@
 const express = require('express');
-const passport = require('passport');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const morgan = require('morgan');
@@ -9,6 +8,7 @@ const app = express();
 
 // ROUTES
 const userRoutes = require('./routes/authRoutes');
+const postRoutes = require('./routes/postRoutes');
 
 // DB Connection
 mongoose.connect(process.env.DB_CONNECT_LOCAL, 
@@ -36,13 +36,8 @@ app.use(session({
 }));
 
 
-// middleware for passport
-require('./config/passport')(passport);
-app.use(passport.initialize());
-app.use(passport.session());
-
-
 app.use('/user', userRoutes);
+app.use('/post', postRoutes);
 
 // not found route
 app.use("**", (req, res) => {
