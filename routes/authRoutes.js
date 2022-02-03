@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const authController = require('../controllers/auth');
 const userController = require('../controllers/user');
-const { ensureAuthenticated } = require('../config/oauth');
+const auth = require('../middlewares/auth');
 
 // Signup
 router

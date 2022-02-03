@@ -1,5 +1,4 @@
 const express = require('express');
-const passport = require('passport');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const morgan = require('morgan');
@@ -8,10 +7,12 @@ require('dotenv').config();
 const app = express();
 
 // ROUTES
-const userRoutes = require('./routes/authRoutes');
+const authRoutes = require('./routes/authRoutes');
+const postRoutes = require('./routes/postRoutes');
+const userRoutes = require('./routes/userRoutes');
 
 // DB Connection
-mongoose.connect(process.env.DB_CONNECT_LOCAL, 
+mongoose.connect(process.env.DB_CLOUD, 
     { useNewUrlParser: true,
     useUnifiedTopology: true})
     .then(
@@ -36,12 +37,8 @@ app.use(session({
 }));
 
 
-// middleware for passport
-require('./config/passport')(passport);
-app.use(passport.initialize());
-app.use(passport.session());
-
-
+app.use('/auth', authRoutes);
+app.use('/post', postRoutes);
 app.use('/user', userRoutes);
 
 // not found route

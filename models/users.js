@@ -3,12 +3,7 @@ const validator = require("validator");
 
 const userSchema = mongoose.Schema(
   {
-    firstname: {
-      type: String,
-      required: true,
-    },
-
-    lastname: {
+    name: {
       type: String,
       required: true,
     },
@@ -36,11 +31,26 @@ const userSchema = mongoose.Schema(
     },
 
     username: {
-      type: String
+      type: String,
+      unique: true
     },
 
-
-    feed: []
+    following: [
+      { 
+        user: {
+          type: mongoose.Schema.ObjectId,
+          ref: 'User'
+        }
+      }
+    ],
+    followers: [
+      {
+         user : {
+           type: mongoose.Schema.ObjectId,
+           ref: 'User'
+         }
+      }
+    ]
   },
 
   {
