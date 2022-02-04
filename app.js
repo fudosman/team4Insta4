@@ -36,6 +36,17 @@ app.use(session({
     saveUninitialized: true
 }));
 
+app.get('/', (req,res)=>{
+    const data = req.body;
+    console.log(data);
+    res.send("<h1>Welcome To The Home Page</h1>");
+});
+
+app.get('/ping', (req,res)=>{
+    const data = req.body;
+    console.log(data); 
+    res.send({message: 'this route is up and running'});
+});
 
 app.use('/auth', authRoutes);
 app.use('/post', postRoutes);
