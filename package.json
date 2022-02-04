@@ -11,10 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/fudosman/team4Insta4.git"
   },
-  "keywords": [
-    "example",
-    "heroku"
-  ],
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -36,8 +33,5 @@
     "passport": "^0.5.2",
     "passport-local": "^1.0.0",
     "validator": "^13.7.0"
-  }, 
-  engines: {
-    "node": "14.x"
   }
 }
