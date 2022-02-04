@@ -36,13 +36,13 @@ app.use(session({
     saveUninitialized: true
 }));
 
-app.use('/', (req,res)=>{
+app.get('/', (req,res)=>{
     const data = req.body;
     console.log(data);
     res.send("<h1>Welcome To The Home Page</h1>");
 });
 
-app.use('/ping', (req,res)=>{
+app.get('/ping', (req,res)=>{
     const data = req.body;
     console.log(data); 
     res.send({message: 'this route is up and running'});
